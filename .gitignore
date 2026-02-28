@@ -2,3 +2,16 @@
 *.iml
 __pycache__/
 .venv/
+# Python
+__pycache__/
+*.pyc
+
+# Virtualenv
+.venv/
+venv/
+
+# IDE
+.idea/
+
+# Local database
+*.db
