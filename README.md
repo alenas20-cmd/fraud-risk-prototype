@@ -1,55 +1,78 @@
 # Fraud Risk Prototype (Python + SQL)
 
-This is a mini fraud-risk scoring system built with Python and SQLite.
+# Fraud Risk Scoring Prototype
 
-The project demonstrates how transaction data can be stored, processed, scored, and analyzed using rule-based risk logic.
+A mini fraud-risk scoring system built with Python and SQLite.
 
----
-
-## What the Project Does
-
-- Stores transactions and customers in a SQLite database
-- Loads data using SQL (including JOIN)
-- Applies rule-based fraud scoring
-- Assigns a risk bucket (LOW / MEDIUM / HIGH)
-- Provides explainable reasons for each decision
-- Writes scoring results back to the database
-- Generates a simple SQL analytics summary
+This project demonstrates how transaction data can be stored, processed, scored, and analyzed using rule-based risk logic in a structured end-to-end pipeline.
 
 ---
 
-## Project Structure
+## 📌 Project Overview
 
-- `analysis.py` – entry point that runs the full pipeline
-- `src/fraud_risk/db.py` – database schema, sample data, updates, summary queries
-- `src/fraud_risk/data_prep.py` – SQL data loading
-- `src/fraud_risk/model.py` – scoring rules and risk logic
-- `src/fraud_risk/config.py` – thresholds, weights, reason descriptions
-- `fraud.db` – generated SQLite database
+The system:
 
----
-
-## Risk Scoring Logic
-
-Risk score is calculated using:
-
-- Base score from transaction amount
-- High amount bonus
-- Night-time transaction bonus (00:00–05:59)
-- New customer bonus
-- Non-UA country bonus
-
-Risk buckets:
-
-- LOW: score < 30
-- MEDIUM: 30–69
-- HIGH: 70+
-
-Each transaction includes explainable reason codes.
+- Stores customers and transactions in a SQLite database  
+- Loads and joins data using SQL  
+- Applies rule-based fraud scoring  
+- Assigns a risk bucket (LOW / MEDIUM / HIGH)  
+- Generates explainable reason codes  
+- Writes scoring results back to the database  
+- Provides analytical summaries and visualizations  
 
 ---
 
-## How to Run
+## ⚙️ Tech Stack
+
+- Python  
+- SQLite  
+- Pandas  
+- Matplotlib  
+
+---
+
+## 🗂 Project Structure
+
+- `analysis.py` – runs the full pipeline (data → scoring → storage)  
+- `src/fraud_risk/db.py` – database schema and queries  
+- `src/fraud_risk/data_prep.py` – data generation and loading  
+- `src/fraud_risk/model.py` – scoring logic and risk rules  
+- `src/fraud_risk/config.py` – thresholds and rule parameters  
+- `fraud.db` – generated SQLite database  
+
+---
+
+## 🧠 Risk Scoring Logic
+
+Risk score is calculated based on:
+
+- Base score from transaction amount  
+- High amount bonus  
+- Night-time transaction bonus (00:00–05:59)  
+- New customer bonus  
+- Non-UA country bonus  
+
+Risk bucket classification:
+
+- LOW – score < 50  
+- MEDIUM – 50–79  
+- HIGH – 80+  
+
+Each transaction includes explainable reason codes for transparency.
+
+---
+
+## 📊 Visualizations
+
+### Transaction Distribution by Risk Bucket
+![Bucket Distribution](assets/bucket_distribution.png)
+
+### Average Risk Score by Country
+![Average Score by Country](assets/avg_score_by_country.png)
+
+---
+
+## ▶ How to Run
 
 ```bash
 python analysis.py
